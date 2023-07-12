@@ -1,0 +1,2 @@
+# boot
+django project
