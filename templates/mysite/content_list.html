@@ -3,12 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>mysite</title>
+    <style>
+                .register{
+            background-color: gray;
+            margin-left: 84%;
+            position: absolute;
+        }
+        .login{
+            margin-left: 88%;
+            position: absolute;
+
+        }
+    </style>
 </head>
 <body>
 <nav>
-    <a href="">main</a>
-    <a href="/company/">company</a>
-    
+    <a href="/home/">홈페이지</a>
+    <a href="/company/">회사</a>
+    <a href="/register/" class="register">회원가입</a>
+    <a href="/login/" class="login">로그인</a>
 </nav>
 <h1>mysite</h1>
 {% if content_list %}
