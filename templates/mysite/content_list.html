@@ -1,38 +1,43 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>mysite</title>
-    <style>
-                .register{
-            background-color: gray;
-            margin-left: 84%;
-            position: absolute;
-        }
-        .login{
-            margin-left: 88%;
-            position: absolute;
+{%load static%}
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Small Business - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" type="text/css" href="{%static 'styles.css'%}">
+        <link rel="stylesheet" type="text/css" href="{%static 'bootstrap.min.css'%}">
+    </head>
+    <body>
 
-        }
-    </style>
-</head>
-<body>
-<nav>
-    <a href="/home/">홈페이지</a>
-    <a href="/company/">회사</a>
-    <a href="/register/" class="register">회원가입</a>
-    <a href="/login/" class="login">로그인</a>
-</nav>
-<h1>mysite</h1>
-{% if content_list %}
-{% for content in content_list %}
-<hr/>
-<h3><a href="/mysite/{{content.id}}">{{content.title}}</a></h3>
-<h5>{{content.content}}</h5>
-{% endfor %}
-{% else %}
-<p>content 가 없습니다</p>
-{% endif %}
-
-</body>
+{% block content %}
+        {% if content_list %}
+        <div class="container px-4 px-lg-5">
+            {% for content in content_list %}
+            <div class="row gx-4 gx-lg-5 align-items-center my-5">
+                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/900x400/dee2e6/6c757d.jpg" alt="..." /></div>
+                <div class="col-lg-5">
+                    <h1 class="font-weight-light">{{content.title}}</h1>
+                    <p>
+                        {{content.content | truncatewords:30}}
+                    </p>
+                    <a class="btn btn-primary" href="{% url 'detail' content.id %}">상세 상품 정보
+                    </a>
+                </div>
+                {% endfor %}   
+            </div>
+            {% else %}
+            <p>content가 없습니다.</p>
+        </div>
+        
+        {% endif %}
+        {% endblock %}
+        
+    </body>
 </html>

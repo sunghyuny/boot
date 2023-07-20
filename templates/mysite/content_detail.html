@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회사소개</title>
+    <title>Document</title>
 </head>
 <body>
     {% extends 'base.html' %}
     {% block content %}
-    <h1>회사소개 페이지입니다.</h1>
+
+    <h2>
+        {{content_list.title}}
+    </h2>
+    <div>
+        {{content_list.content}}
+    </div>
     {% endblock %}
+    
 </body>
 </html>
