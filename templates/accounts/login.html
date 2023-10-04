@@ -1,61 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
-    <title>Login</title>
+    <style>
+.login_container{
+    text-align: center;
+}
+
+hr{
+    width: 20%;
+}
+
+input[type="text"][name="username"] {
+    opacity: 0.5; /* 초기 불투명도 설정 */
+    border: 1px solid #ccc; /* 초기 테두리 스타일 설정 */
+    transition: opacity 0.3s, border-color 0.3s; /* 전환 효과 추가 */
+    width: 20%; /* 넓이 20% 설정 */
+    height: 40px; /* 높이 10px 설정 */
+}
+
+input[type="text"][name="username"]:focus {
+    opacity: 1; /* 클릭 시 불투명도 100으로 변경 */
+    border: 2px solid #000; /* 클릭 시 테두리 스타일 변경 */
+}
+
+input[type="password"][name="password"] {
+    opacity: 0.5; /* 초기 불투명도 설정 */
+    border: 1px solid #ccc; /* 초기 테두리 스타일 설정 */
+    transition: opacity 0.3s, border-color 0.3s; /* 전환 효과 추가 */
+    width: 20%; /* 넓이 20% 설정 */
+    height: 40px; /* 높이 10px 설정 */
+}
+
+input[type="password"][name="password"]:focus {
+    opacity: 1; /* 클릭 시 불투명도 100으로 변경 */
+    border: 2px solid #000; /* 클릭 시 테두리 스타일 변경 */
+}
+
+.login_input .see {
+    position: absolute;
+    right: 5px; /* 오른쪽 여백 조정 */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.black_btn {
+    background-color: black; /* 검은색 배경색 */
+    color: white; /* 흰색 텍스트 색상 */
+    border: none; /* 선 제거 */
+    padding: 10px 20px; /* 필요에 따라 패딩을 조절하세요 */
+    text-decoration: none; /* 밑줄 제거 */
+    cursor: pointer; /* 호버 시 커서를 포인터로 변경 */
+    border-radius: 5px;
+    width: 20%;
+    height: 40px;
+
+}
+
+.kakao_login {
+    background-color: yellow; /* 노란색 배경색 설정 */
+    color: black; /* 검은색 텍스트 색상 설정 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px;
+    width: 20%;
+    height: 40px;
+}
+
+.apple_login {
+    background-color: white; /* 흰색 배경색 설정 */
+    color: black; /* 검은색 텍스트 색상 설정 */
+    border: 1px solid grey; /* 테두리 제거 */
+    border-radius: 5px;
+    width: 20%;
+    height: 40px;
+}
+
+#popup_btn.join_btn {
+    background-color: transparent; /* 배경색 제거 */
+    border: 1px solid blue; /* 파란색 선 추가 */
+    color: blue; /* 텍스트 색상을 파란색으로 설정 */
+    padding: 10px 20px; /* 필요에 따라 패딩을 조절하세요 */
+    text-decoration: none; /* 밑줄 제거 */
+    cursor: pointer; /* 호버 시 커서를 포인터로 변경 */
+}
+    </style>
 </head>
-<body>
-<<<<<<< HEAD
-    {% extends "base.html" %}
 
-    {% block content %}
-
-    {% if form.errors %}
-    <p>아이디 또는 비밀번호가 틀립니다. 다시 시도해주세요</p>
-    {% endif %}
-
-    <form method="post" action="{% url 'accounts:login' %}">
-        {%csrf_token %}
-        <table>
-            <tr>
-                <td>{{form.username.label_tag}}</td>
-                <td>{{form.username}}</td>
-            </tr>
-            <tr>
-                <td>{{form.password.label_tag}}</td>
-                <td>{{form.password}}</td>
-            </tr>
-            <tr>
-                <td>{{form.age.label_tag}}</td>
-                <td>{{form.age}}</td>
-            </tr>
-        </table>
-        <input type="submit" value="login">
-    </form>
-    <a href="{% url 'accounts:signup' %}"> signup</a>
-    {% endblock %}
-    
-=======
     <div class="login_container">
         <h2 class="comment">로그인</h2>
         <hr>
+        <form method="post" action="{% url 'accounts:login' %}">
+            {% csrf_token %}
         <!--content-->
         <div class="login_content">
+            <form action="" method="post" novalidate>
             <div class="login_input">
-                <input type="text" name="id" title="아이디 입력" placeholder="아이디"><br>
-                <input type="password" name="pw" title="비밀번호" placeholder="비밀번호">
-                <button type="button" class="see" aria-label="비밀번호 보이기"></button>
+                <input type="text" name="username" title="아이디 입력" placeholder="아이디" value="{{ form.username.value|default_if_none:''}}"   ><br>
+                <input type="password" name="password" title="비밀번호" placeholder="비밀번호" value="{{ form.password.value|default_if_none:'' }}">
+
                 <div class="login_btn">
-                    <button type="submit" class="black_btn">로그인</button>
+                    <button class="black_btn"> 로그인</button>
                 </div>
-                <div class="login_unit">
-                    <div class="checkbox">
-                        <input type="checkbox" id="autologin" value="1">
-                        <label for="autologin" id="labelAutologin">자동 로그인</label>
-                    </div>
-                    
+
                 </div>
                 <div class="login_unit_find">
                     <a href="#" class="find_id">아이디 찾기</a>
@@ -68,10 +117,10 @@
                 <div class="join">
                     <button type="button" id="popup_btn" class="join_btn">회원가입</button>
                 </div>
-                
-            </div>
+
         </div>
-    </div>
->>>>>>> c26b1c6aaf0a3ebe80e16e73b4d37435e211955d
-</body>
-</html>
+
+  </form>
+
+        </div>
+{% endblock %}
