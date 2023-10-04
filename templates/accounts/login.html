@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
 </head>
 <body>
+<<<<<<< HEAD
     {% extends "base.html" %}
 
     {% block content %}
@@ -35,5 +37,41 @@
     <a href="{% url 'accounts:signup' %}"> signup</a>
     {% endblock %}
     
+=======
+    <div class="login_container">
+        <h2 class="comment">로그인</h2>
+        <hr>
+        <!--content-->
+        <div class="login_content">
+            <div class="login_input">
+                <input type="text" name="id" title="아이디 입력" placeholder="아이디"><br>
+                <input type="password" name="pw" title="비밀번호" placeholder="비밀번호">
+                <button type="button" class="see" aria-label="비밀번호 보이기"></button>
+                <div class="login_btn">
+                    <button type="submit" class="black_btn">로그인</button>
+                </div>
+                <div class="login_unit">
+                    <div class="checkbox">
+                        <input type="checkbox" id="autologin" value="1">
+                        <label for="autologin" id="labelAutologin">자동 로그인</label>
+                    </div>
+                    
+                </div>
+                <div class="login_unit_find">
+                    <a href="#" class="find_id">아이디 찾기</a>
+                    <a href="#" class="find_pw">비밀번호 찾기</a>
+                </div>
+                <div class="auther_longin">
+                    <button type="button" class="kakao_login">카카오 로그인</button><br>
+                    <button type="button" class="apple_login">애플 로그인</button>
+                </div>
+                <div class="join">
+                    <button type="button" id="popup_btn" class="join_btn">회원가입</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+>>>>>>> c26b1c6aaf0a3ebe80e16e73b4d37435e211955d
 </body>
 </html>
