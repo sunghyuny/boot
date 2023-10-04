@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 <!DOCTYPE html>
+<<<<<<< HEAD
 {%load static%}
 <html lang="ko">
     <head>
@@ -15,6 +16,29 @@
         <link rel="stylesheet" type="text/css" href="{%static 'bootstrap.min.css'%}">
     </head>
     <body>
+=======
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mysite</title>
+</head>
+<body>
+<nav>
+    <a href="/home/">홈페이지</a>
+    <a href="/company/">회사소개</a>
+    
+</nav>
+<h1>mysite</h1>
+{% if content_list %}
+{% for content in content_list %}
+<hr/>
+<h3><a href="/mysite/{{content.id}}">{{content.title}}</a></h3>
+<h5>{{content.content}}</h5>
+{% endfor %}
+{% else %}
+<p>content 가 없습니다</p>
+{% endif %}
+>>>>>>> 11e2de91a3ac6d1dc7c62adeffac5e3008a8ef47
 
 {% block content %}
         {% if content_list %}
