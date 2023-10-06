@@ -64,16 +64,23 @@ def comment_delete(request, comment_id):
     return redirect('detail', content_id=comment.content_list.id)
 
 class ProductRegister(FormView):
-    template_name = 'mysite/product_register.html'
-    form_class = RegisterForm
-    success_url = '/mysite/'
+        template_name = 'mysite/product_register.html'
+        form_class = RegisterForm
+        success_url = '/mysite/'
 
-    def form_valid(self, form):
-        mysite = Product(
-            name = form.data.get('name'),
-            price = form.data.get('price'),
-            stock = form.data.get('stock'),
-            description = form.data.get('description')
-        )
-        mysite.save()
-        return super().form_valid(form)
+        def form_valid(self, form):
+            name = form.cleaned_data['name']
+            price = form.cleaned_data['price']
+            stock = form.cleaned_data['stock']
+            description = form.cleaned_data['description']
+            imgfile = self.request.FILES.get('imgfile')  # 이미지 파일을 가져오기
+
+            product = Product(
+                name=name,
+                price=price,
+                stock=stock,
+                description=description,
+                imgfile=imgfile  # 이미지 파일 추가
+            )
+            product.save()
+            return super().form_valid(form)

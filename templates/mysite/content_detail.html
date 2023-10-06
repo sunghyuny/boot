@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     {% extends 'base.html' %}
     {% block content %}
+    {% load static %}
+
     <h2>
-        {{content_list.title}}
+        {{content_list.name}} <br>
+
     </h2>
+
     <div>
         {{content_list.description}}
-    </div>
+
+<!-- 이미지 출력 -->
+<div>
+    {% if content_list.imgfile %}
+    <img src="{{ content_list.imgfile.url }}" alt="{{ content_list.name }}" width="200">
+    {% endif %}
+</div>
+
+
     <section class="mb-5">
         <div class="card bg-light">
             <div class="card-body">

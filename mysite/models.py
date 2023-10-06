@@ -19,11 +19,13 @@ class Comment(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length = 32, verbose_name="상품명")
-    price = models.IntegerField(verbose_name = "상품가격")
+    price = models.IntegerField(verbose_name="상품가격")
     description = models.TextField(verbose_name="상품설명")
     stock = models.IntegerField(verbose_name="재고")
     registered_date = models.DateTimeField(verbose_name="등록시간", auto_now_add=True)
+    imgfile = models.ImageField(upload_to="products/", null=True, blank=True, verbose_name="상품이미지")
+
+    name = models.CharField(max_length=32, verbose_name="상품명")
 
     def __str__(self):
         return self.name

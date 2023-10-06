@@ -20,6 +20,8 @@ from django.urls import path
 from . import views
 
 
+
+
 urlpatterns = [
     path('',views.index),
     path('<int:content_id>/', views.detail, name='detail'),
@@ -29,3 +31,5 @@ urlpatterns = [
     path('product/', views.ProductRegister.as_view(), name='product_create'),
     
 ]
+
+
