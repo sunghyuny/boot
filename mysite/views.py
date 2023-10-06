@@ -1,18 +1,18 @@
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404,render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import MainContent, Comment
-from .forms import CommentForm
-
+from .models import MainContent, Comment ,Product
+from .forms import CommentForm, RegisterForm
+from django.views.generic.edit import FormView
 
 # Create your views here.
 def index(request):
-    content_list = MainContent.objects.order_by('-pub_date')
+    content_list = Product.objects.order_by('registered_date')
     context ={ 'content_list':content_list}
     return render(request, 'mysite/content_list.html' , context)
 
 def detail(request, content_id):
- content_list = MainContent.objects.get(id=content_id)
+ content_list = Product.objects.get(id=content_id)
  context = { 'content_list': content_list}
  return render(request, 'mysite/content_detail.html', context)
 
@@ -62,3 +62,18 @@ def comment_delete(request, comment_id):
     else:
         comment.delete()
     return redirect('detail', content_id=comment.content_list.id)
+
+class ProductRegister(FormView):
+    template_name = 'mysite/product_register.html'
+    form_class = RegisterForm
+    success_url = '/mysite/'
+
+    def form_valid(self, form):
+        mysite = Product(
+            name = form.data.get('name'),
+            price = form.data.get('price'),
+            stock = form.data.get('stock'),
+            description = form.data.get('description')
+        )
+        mysite.save()
+        return super().form_valid(form)

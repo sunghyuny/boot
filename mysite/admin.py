@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MainContent,Comment
+from .models import MainContent,Comment,Product
 # Register your models here.
 
 
@@ -15,4 +15,7 @@ class CommentAdmin(admin.ModelAdmin):
 admin.site.register(MainContent,MainContentAdmin)
 admin.site.register(Comment, CommentAdmin)
 
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price',)
 
+admin.site.register(Product, ProductAdmin)

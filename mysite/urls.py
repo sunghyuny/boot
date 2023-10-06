@@ -26,5 +26,6 @@ urlpatterns = [
     path('comment/create/<int:content_id>/', views.comment_create, name='comment_create'),
     path('comment/update/<int:comment_id>/', views.comment_update, name='comment_update'),
     path('comment/delete/<int:comment_id>/', views.comment_delete, name='comment_delete'),
+    path('product/', views.ProductRegister.as_view(), name='product_create'),
     
 ]
