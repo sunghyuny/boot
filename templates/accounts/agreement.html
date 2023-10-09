@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        .container{
+            text-align: left;
+            max-width: 600px; /* 컨테이너의 최대 너비 설정 (원하는 값으로 조정) */
+            margin: 0 auto; /* 가운데 정렬 유지 */
+        }
+        .all_checkbox_label {
+            font-weight: bold; /* 글자를 진하게 설정 */
+        }
+        .membership_checkbox label:not(.all_checkbox_label) {
+            opacity: 0.6; /* 투명도를 낮춰 글자를 흐리게 만듭니다. */
+        }
+        .join_btn {
+            width: 70%;
+            height: 40px;
+            border: none; /* 테두리 없음 */
+            background-color: transparent; /* 배경 투명 */
+            color: black; /* 글자색 회색 */
+        }
+        .join_btn.active {
+            background-color: skyblue; /* 배경색 파란색 */
+            color: white; /* 글자색 흰색 */
+        }
+        #nextpage.join_btn a {
+            text-decoration: none; /* 밑줄 없애기 */
+            color: gray;
+            cursor: pointer; /* 커서를 포인터로 설정 */
+        }
+        #nextpage.join_btn a.disabled {
+            pointer-events: none; /* 링크 비활성화 */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3 class="comment">환영합니다<br>가입하시려면<br>약관에 동의해 주세요</h3>
+
+    <form method="post" action="{% url 'accounts:agreement' %}">
+        {% csrf_token %}
+        <div class="content">
+            <form action="" method="post" novalidate>
+                <div class="membership_agreement">
+                    <div class="all_checkbox">
+                        <input type="checkbox" id="all_checkbox" name="all_checkbox">
+                        <label for="all_checkbox" class="all_checkbox_label"> 약관 전체 동의하기 (선택 동의 포함)</label>
+                    </div>
+
+                    <div class="membership_checkbox">
+                        <input type="checkbox" name="MembershipCheckbox1" id="agecheckbox">
+                        <label for="agecheckbox" class="checkbox_label">[필수]만 14세 이상입니다.</label>
+                    </div>
+
+                    <div class="membership_checkbox">
+                        <input type="checkbox" name="MembershipCheckbox2" id="agreecheckbox">
+                        <label for="agreecheckbox" class="checkbox_label">[필수]무신사, 무신사 스토어 이용 약관.</label>
+                    </div>
+
+                    <div class="membership_checkbox">
+                        <input type="checkbox" name="MembershipCheckbox3" id="privacyAgreeCheckbox">
+                        <label for="privacyAgreeCheckbox" class="checkbox_label">[필수]개인정보 수집 및 이용 동의.</label>
+                    </div>
+
+                    <div class="membership_checkbox">
+                        <input type="checkbox" name="MembershipCheckbox4" id="marketingAgreeCheckbox">
+                        <label for="marketingAgreeCheckbox" class="checkbox_label">[선택]광고성 정보 수신 동의.</label>
+                    </div>
+
+                    <div class="membership_checkbox">
+                        <input type="checkbox" name="MembershipCheckbox4" id="memberPrivacyAgreeCheckbox">
+                        <label for="memberPrivacyAgreeCheckbox" class="checkbox_label">[선택]개인정보 수집 및 이용 동의.</label>
+                    </div>
+
+                    <div class="bottom">
+                        <button type="button" id="nextpage" class="join_btn"><a href="{% url 'accounts:signup' %}" id="joinLink">동의 하고 회원가입하기</a></button>
+                        <ul class="guide_list">
+                            <li>
+                                본인 인증이 어려운 경우
+                                <a href="#" class="guide_link">비회원 구매</a>
+                                할 수 있습니다.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </form>
+</div>
+<script>
+    // "all_checkbox" 체크박스 요소를 가져옵니다.
+    var allCheckbox = document.getElementById("all_checkbox");
+
+    // 모든 다른 체크박스 요소들을 가져옵니다.
+    var otherCheckboxes = document.querySelectorAll(".membership_checkbox input[type='checkbox']:not(#all_checkbox)");
+
+    // "all_checkbox"가 변경될 때 호출되는 함수를 정의합니다.
+    function toggleCheckboxes() {
+        var isChecked = allCheckbox.checked;
+        otherCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = isChecked;
+        });
+        updateJoinButton();
+    }
+
+    // "all_checkbox"의 변경 이벤트에 toggleCheckboxes 함수를 연결합니다.
+    allCheckbox.addEventListener("change", toggleCheckboxes);
+
+    // 체크박스 요소들을 가져옵니다.
+    var ageCheckbox = document.getElementById("agecheckbox");
+    var agreeCheckbox = document.getElementById("agreecheckbox");
+    var privacyAgreeCheckbox = document.getElementById("privacyAgreeCheckbox");
+    var joinBtn = document.getElementById("nextpage");
+    var joinLink = document.getElementById("joinLink");
+
+    // 체크박스 상태가 변경될 때 호출되는 함수를 정의합니다.
+    function checkAllCheckboxes() {
+        if (allCheckbox.checked || (ageCheckbox.checked && agreeCheckbox.checked && privacyAgreeCheckbox.checked)) {
+            joinBtn.classList.add("active"); // 모든 체크박스가 선택되면 버튼에 'active' 클래스 추가
+            joinLink.classList.remove("disabled"); // 링크 활성화
+        } else {
+            joinBtn.classList.remove("active"); // 하나라도 선택되지 않으면 'active' 클래스 제거
+            joinLink.classList.add("disabled"); // 링크 비활성화
+        }
+    }
+
+    // 초기 체크박스 상태 확인
+    checkAllCheckboxes();
+
+    // 체크박스의 변경 이벤트에 checkAllCheckboxes 함수를 연결합니다.
+    allCheckbox.addEventListener("change", checkAllCheckboxes);
+    ageCheckbox.addEventListener("change", checkAllCheckboxes);
+    agreeCheckbox.addEventListener("change", checkAllCheckboxes);
+    privacyAgreeCheckbox.addEventListener("change", checkAllCheckboxes);
+</script>
+{% endblock %}
+</body>
+</html>

@@ -14,3 +14,6 @@ def signup(request):
     else:
         form=SignupForm()
     return render(request, 'accounts/signup.html', {'form':form})
+
+def agreement(request):
+    return render(request, 'accounts/agreement.html')

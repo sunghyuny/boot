@@ -97,30 +97,30 @@ input[type="password"][name="password"]:focus {
         <!--content-->
         <div class="login_content">
             <form action="" method="post" novalidate>
-            <div class="login_input">
-                <input type="text" name="username" title="아이디 입력" placeholder="아이디" value="{{ form.username.value|default_if_none:''}}"   ><br>
-                <input type="password" name="password" title="비밀번호" placeholder="비밀번호" value="{{ form.password.value|default_if_none:'' }}">
+                <div class="login_input">
+                    <input type="text" name="username" title="아이디 입력" placeholder="아이디" value="{{ form.username.value|default_if_none:''}}"   ><br>
+                    <input type="password" name="password" title="비밀번호" placeholder="비밀번호" value="{{ form.password.value|default_if_none:'' }}">
 
-                <div class="login_btn">
-                    <button class="black_btn"> 로그인</button>
-                </div>
+                    <div class="login_btn">
+                        <button class="black_btn"> 로그인</button>
+                    </div>
 
+                    </div>
+                    <div class="login_unit_find">
+                        <a href="#" class="find_id">아이디 찾기</a>
+                        <a href="#" class="find_pw">비밀번호 찾기</a>
+                    </div>
+                    <div class="auther_longin">
+                        <button type="button" class="kakao_login">카카오 로그인</button><br>
+                        <button type="button" class="apple_login">애플 로그인</button>
+                    </div>
+                    <div class="join">
+                        <button type="button" id="popup_btn" class="join_btn">회원가입</button>
+                    </div>
                 </div>
-                <div class="login_unit_find">
-                    <a href="#" class="find_id">아이디 찾기</a>
-                    <a href="#" class="find_pw">비밀번호 찾기</a>
-                </div>
-                <div class="auther_longin">
-                    <button type="button" class="kakao_login">카카오 로그인</button><br>
-                    <button type="button" class="apple_login">애플 로그인</button>
-                </div>
-                <div class="join">
-                    <button type="button" id="popup_btn" class="join_btn">회원가입</button>
-                </div>
-
+            </form>
         </div>
 
-  </form>
 
         </div>
 {% endblock %}
