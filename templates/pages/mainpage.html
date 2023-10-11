@@ -1,9 +1,126 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
-{% load static %}
-    {% block content %}
 
-    <h1></h1>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>메인페이지</title>
 
-{% endblock %}
+    <style>
+        /* CSS 스타일링 */
+
+
+        ul {
+            list-style-type: none; /* 목록 스타일 제거 */
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        li {
+            float: left; /* 항목을 왼쪽으로 정렬 */
+        }
+
+
+        /* 왼쪽 구역 스타일 */
+        .left {
+            width: 14%; /* 왼쪽 구역 너비는 화면의 절반으로 설정 */
+            float: left; /* 왼쪽으로 부유 */
+        }
+
+        /* 오른쪽 구역 스타일 */
+        .right {
+            width: 84%; /* 오른쪽 구역 너비는 화면의 절반으로 설정 */
+            float: right; /* 오른쪽으로 부유 */
+        }
+    </style>
+</head>
+
+{% block content %}
+<body>
+    <!-- 메인 페이지 -->
+    <!-- 왼쪽 메뉴 영역 -->
+<div class="left">
+        <div>
+            <ul class="maincategory">
+                <button>품목</button>
+                <button>브랜드</button>
+            </ul>
+            <br>
+            <div class="categorylist">
+                <div class="tablist">인기</div><hr>
+                <div class="tablist">상의</div><hr>
+                <div class="tablist">아우터</div><hr>
+                <div class="tablist">바지</div><hr>
+                <div class="tablist">원피스</div><hr>
+                <div class="tablist">스커트</div><hr>
+                <div class="tablist">스니커즈</div><hr>
+                <div class="tablist">신발</div><hr>
+                <div class="tablist">가방</div><hr>
+                <div class="tablist">여성 가방</div><hr>
+                <div class="tablist">스포츠/용품</div><hr>
+                <div class="tablist">모자</div><hr>
+                <div class="tablist">양말/레그웨어</div><hr>
+                <div class="tablist">속옷</div><hr>
+                <div class="tablist">선글라스/안경테</div><hr>
+                <div class="tablist">엑세서리</div><hr>
+                <div class="tablist">시계</div><hr>
+                <div class="tablist">주얼리</div><hr>
+                <div class="tablist">뷰티</div><hr>
+                <div class="tablist">디지털/테크</div><hr>
+                <div class="tablist">리빙</div><hr>
+                <div class="tablist">컬처</div><hr>
+                <div class="tablist">반려동물</div><hr>
+            </div>
+        </div>
+    </div>
+
+    <!-- //왼쪽 메뉴 영역 -->
+    <!-- 오른쪽 메뉴 영역 --><div class="right">
+        <!-- 스타일 스냅 -->
+        <h2>스타일</h2>
+        <div class="snaptap">
+            <a href="#">브랜드 스냅</a><br>
+            <a href="#">코디숍</a><br>
+            <a href="#">코디맵</a><br>
+            <a href="#">브랜드 룩북</a><br>
+        </div>
+        <hr>
+        <h2>스페셜</h2>
+        <div class="specialtap">
+            <a href="#">쇼케이스</a><br>
+            <a href="#">단독 상품</a><br>
+        </div>
+        <hr>
+        <h2>쇼핑 이슈</h2>
+        <div class="shoppingissue">
+
+        </div>
+        <hr>
+        <h2>매거진</h2>
+        <div class="megagine">
+            <a href="#">스타일</a><br>
+            <a href="#">코디</a><br>
+            <a href="#">아이템</a><br>
+            <a href="#">리포트</a><br>
+            <a href="#">피플</a><br>
+        </div>
+        <hr>
+        <h2>구매 후기</h2>
+        <div class="review">
+
+        </div>
+        <hr>
+        <h2>주요 브랜드</h2>
+        <div class="mainbrand">
+
+        </div>
+    </div>
+    <!-- //오른쪽 메뉴 영역 -->
+
+
+
 </body>
 </html>
+{% endblock %}
+
+
