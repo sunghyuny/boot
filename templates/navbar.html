@@ -22,19 +22,28 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">상품</a>
+                            <a href="/mysite" class="nav-link">상품</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">브랜드</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">검색어</a>
+                        <form action="{% url 'search_app:searchResult' %}" method="get">
+                            {% csrf_token %}
+                            <input type="text" type="search" name="q">
+                            <button type="submit">검색</button>
                         </li>
+                            </form>
                         {% if user.is_authenticated %}
                          <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">{{ user.username }} (logout)</a></li>
                          {% else %}
                          <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">login</a></li>
                          {% endif %}
+                        {% if user.is_authenticated %}
+                        <li>
+                            <a href="/cart" class="nav-link">장바구니</a>
+                        </li>
+                        {% endif %}
 
                     </ul>
                 </div>

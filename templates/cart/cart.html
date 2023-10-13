@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .my_customer_table{
+      min-width:400px;
+      font-size:14px;
+    }
+    .my_custom_thread{
+      font-weight:normal;
+      text-transform:uppercase;
+      letter-spacing: .2em;
+      background-color:#f8f9fa !important;
+    }
+    .custom_image{
+      width:100px;
+      height:100px;
+    }
+    .custom_a{
+      text-decoration: none;
+    }
+    .custom_icon{
+      text-decoration: none;
+      color: #868e96 !important;
+    }
+    .my_custom_button{
+      margin-top: 5px;
+    }
+  </style>
+</head>
+</html>
+{% extends 'base.html' %}
+
+{% block metadescription %}
+  This is the shopping cart page. Proceed to review your items and place the order.
+{% endblock %}
+
+{% block title %}
+  Cart - Perfect Cushion Store
+{% endblock %}
+
+{% block content %}
+  {% if not cart_items %}
+    <div class="text-center">
+      <br>
+      <h1 class="text-center my_title">
+        장바구니가 비었어요
+      </h1>
+      <br>
+      <p class="text-center">
+        <a href="/mysite">여기</a>를 누르면 쇼핑하러갈수있어요
+      </p>
+    </div>
+  {% else %}
+    <div>
+      <div class="text-center">
+        <br>
+        <h1 class="text-center my_title">
+          장바구니
+        </h1>
+        <br>
+      </div>
+    </div>
+    <div class="row mx-auto">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table my_custom_table">
+          <thead class="my_custom_thread">
+            <tr>
+              <th colspan="5">
+                내가 담은 목록
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cart_item in cart_items %}
+              <tr>
+                <td>
+                  <a href="{% url 'detail' cart_item.product.id %}"><img src="{{ cart_item.product.imgfile.url }}" alt="{{ cart_item.product.name }}" class="float-left rounded custom_image"></a>
+                </td>
+                <td class="text-left">
+                  <br>
+                  이름: {{ cart_item.product.name }}
+                  <br>
+                  개당 가격:{{ cart_item.product.price }}원
+                  <br>
+                  개수: {{ cart_item.quantity }}
+                </td>
+                <td>
+                  {{ cart_item.sub_total }}원
+                </td>
+                {% if cart_item.quantity <= cart_item.product.stock %}
+                  <td>
+                    <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i class="fas fa-plus-circle custom_icon">+</i></a>&nbsp;
+                    <a href="{% url 'cart:remove_cart' cart_item.product.id %}" class="custom_a"><i class="fas fa-minus-circle custom_icon">-</i></a>&nbsp;
+                    <a href="#" class="custom_a"><i class="fas fa-trash-alt custom_icon"></i></a>
+                  </td>
+                {% else %}
+                  <td>
+                    &nbsp;<a href="#" class="custom_a"><i class="fas fa-minus-circle custom_icon"></i></a>&nbsp;
+                    <a href="#" class="custom_a"><i class="fas fa-trash-alt custom_icon"></i></a>
+                  </td>
+                  <td></td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table my_custom_table">
+          <thead class="my_custom_thread">
+            <tr>
+              <th>
+                결제
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                결제전 장바구니 항목 확인해주세요
+              </td>
+            </tr>
+            <tr>
+              <td class="text-left">
+                총합 <strong>{{ total }}원</strong> 입니다.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="mx-auto">
+          <a href="/mysite" class="btn btn-secondary btn-block my_custom_button">계속 쇼핑하러가기</a>
+        </div>
+      </div>
+    </div>
+    <br>
+  {% endif %}
+{% endblock %}
+</html>

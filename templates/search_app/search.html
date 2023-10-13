@@ -1,0 +1,31 @@
+<head>
+    <style>
+    .my_search_text{
+    padding-top:20px;
+    }
+    </style>
+</head>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mx-auto">
+        {% for product in products %}
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4">
+            <div class="card text-center" style="min-width: 18rem;">
+                <a href="{% url 'detail' product.id %}"><img class="card-img-top my_image" src="{{ product.imgfile.url }}"  alt="{{product.name}}"></a>
+                <div class="card-body">
+                    <h4>{{product.name}}</h4>
+                    <p>{{product.price}} 원</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="row mx-auto">
+            <p class="text-center my_search_text"> 찾을수없습니다</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
