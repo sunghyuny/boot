@@ -19,7 +19,7 @@
             opacity: 0.6; /* 투명도를 낮춰 글자를 흐리게 만듭니다. */
         }
         .join_btn {
-            width: 70%;
+            width: 30%;
             height: 40px;
             border: none; /* 테두리 없음 */
             background-color: transparent; /* 배경 투명 */
@@ -41,7 +41,7 @@
 </head>
 <body>
 <div class="container">
-    <h3 class="comment">환영합니다<br>가입하시려면<br>약관에 동의해 주세요</h3>
+    <h3 class="comment">환영합니다 가입하시려면<br>약관에 동의해 주세요</h3>
 
     <form method="post" action="{% url 'accounts:agreement' %}">
         {% csrf_token %}

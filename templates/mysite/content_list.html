@@ -21,6 +21,25 @@
 <head>
     <meta charset="UTF-8">
     <title>mysite</title>
+    <style>
+        /* 버튼 밑줄 제거 */
+        .add_item a {
+            text-decoration: none;
+        }
+
+        /* 버튼 테두리 제거 및 배경색 변경 */
+        .add_item{
+            border: none;
+            background-color: white;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+
+        /* 마우스를 올렸을 때 배경색 변경 */
+        .add_item:hover {
+            background-color: skyblue;
+        }
+    </style>
 </head>
 <body>
 <nav>
@@ -31,7 +50,7 @@
 
 
 {% block content %}
-<button><a href="product">상품 등록</a></button>
+<a class="add_item" href="product">상품 등록</a>
         {% if content_list %}
         <div class="container px-4 px-lg-5">
 

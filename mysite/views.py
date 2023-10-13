@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from .models import MainContent, Comment ,Product
 from .forms import CommentForm, RegisterForm
 from django.views.generic.edit import FormView
+from django.utils.decorators import *
+
 
 # Create your views here.
 def index(request):
@@ -63,6 +65,8 @@ def comment_delete(request, comment_id):
         comment.delete()
     return redirect('detail', content_id=comment.content_list.id)
 
+
+
 class ProductRegister(FormView):
         template_name = 'mysite/product_register.html'
         form_class = RegisterForm
@@ -84,3 +88,5 @@ class ProductRegister(FormView):
             )
             product.save()
             return super().form_valid(form)
+
+
