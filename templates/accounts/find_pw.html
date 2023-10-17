@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .find_content {
+            text-align:center;
+        }
+        .find_container{
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 수직 가운데 정렬 */
+            text-align: left; /* 내용 왼쪽 정렬 */
+            margin: 0 auto; /* 수평 가운데 정렬 */
+        }
+
+        .tab_list button{
+            border: none;
+            background-color:white;
+            margin-top: 50px;
+            margin-bottom:50px;
+        }
+        #find_id a{
+            text-decoration: none;
+            color: gray;
+        }
+        #inputID{
+            width:100%;
+            margin-top:20px;
+            margin-bottom:150px;
+        }
+        .bottom button{
+            width:200px;
+            //border:none;
+            background-color:white;
+            margin: 0 auto; /* 수평 가운데 정렬 */
+            //height: 100vh; /* 화면 전체 높이에 맞게 내용을 배치합니다. */
+        }
+        #search_btn {
+            text-align: center; /* 텍스트를 수평 가운데 정렬합니다. */
+        }
+    </style>
+</head>
+<body>
+<div class="find_content">
+        <header class="title">
+            <h2>비밀번호</h2>
+        </header>
+
+        <div class="find_container">
+            <div class="tab_list">
+                <button type="button" id="find_id"><a href="{% url 'accounts:find_id' %}" class="find_id">아이디 찾기</a></button>
+                <button type="button" id="find_pw">비밀번호 찾기</button>
+            </div>
+            <div class="find_table">
+                <div class="find_passwd">
+                    <label class="input_label">비밀번호를 찾으려는 아이디</label><br>
+                    <input type="text" name="id_input" id="inputID" name="input_ID">
+                </div>
+
+                <div class="bottom">
+                    <button type="button" id="search_btn" class="find_btn">다음</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -17,3 +17,9 @@ def signup(request):
 
 def agreement(request):
     return render(request, 'accounts/agreement.html')
+
+def find_id(request):
+    return render(request, 'accounts/find_id.html')
+
+def find_pw(request):
+    return render(request, 'accounts/find_pw.html')
