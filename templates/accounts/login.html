@@ -1,126 +1,274 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
-{% load static %}
+
 {% block content %}
+
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
     <style>
-.login_container{
-    text-align: center;
-}
+        .login_choice .member{
+            display: inline;
+            cursor: pointer; /* 커서 스타일을 pointer로 변경 */
+        }
+        .login_choice .not_member{
+            display: inline;
+            cursor: pointer; /* 커서 스타일을 pointer로 변경 */
+        }
 
-hr{
-    width: 20%;
-}
+        .login_container {
+            text-align: center;
+        }
 
-input[type="text"][name="username"] {
-    opacity: 0.5; /* 초기 불투명도 설정 */
-    border: 1px solid #ccc; /* 초기 테두리 스타일 설정 */
-    transition: opacity 0.3s, border-color 0.3s; /* 전환 효과 추가 */
-    width: 20%; /* 넓이 20% 설정 */
-    height: 40px; /* 높이 10px 설정 */
-}
+        .login_container hr {
+            width: 20%;
+            margin: 0 auto; /* 가운데 정렬을 위한 추가 스타일 */
 
-input[type="text"][name="username"]:focus {
-    opacity: 1; /* 클릭 시 불투명도 100으로 변경 */
-    border: 2px solid #000; /* 클릭 시 테두리 스타일 변경 */
-}
+        }
 
-input[type="password"][name="password"] {
-    opacity: 0.5; /* 초기 불투명도 설정 */
-    border: 1px solid #ccc; /* 초기 테두리 스타일 설정 */
-    transition: opacity 0.3s, border-color 0.3s; /* 전환 효과 추가 */
-    width: 20%; /* 넓이 20% 설정 */
-    height: 40px; /* 높이 10px 설정 */
-}
+        input[type="text"][name="username"] {
+            opacity: 0.5;
+            border: 1px solid #ccc;
+            transition: opacity 0.3s, border-color 0.3s;
+            width: 20%;
+            height: 40px;
+        }
 
-input[type="password"][name="password"]:focus {
-    opacity: 1; /* 클릭 시 불투명도 100으로 변경 */
-    border: 2px solid #000; /* 클릭 시 테두리 스타일 변경 */
-}
+        input[type="text"][name="username"]:focus {
+            opacity: 1;
+            border: 2px solid #000;
+        }
 
-.login_input .see {
-    position: absolute;
-    right: 5px; /* 오른쪽 여백 조정 */
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-}
+        input[type="password"][name="password"] {
+            opacity: 0.5;
+            border: 1px solid #ccc;
+            transition: opacity 0.3s, border-color 0.3s;
+            width: 20%;
+            height: 40px;
+        }
 
-.black_btn {
-    background-color: black; /* 검은색 배경색 */
-    color: white; /* 흰색 텍스트 색상 */
-    border: none; /* 선 제거 */
-    padding: 10px 20px; /* 필요에 따라 패딩을 조절하세요 */
-    text-decoration: none; /* 밑줄 제거 */
-    cursor: pointer; /* 호버 시 커서를 포인터로 변경 */
-    border-radius: 5px;
-    width: 20%;
-    height: 40px;
+        input[type="password"][name="password"]:focus {
+            opacity: 1;
+            border: 2px solid #000;
+        }
 
-}
+        .login_input .see {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .login_unit_find .find_id{
+            text-decoration: none; /* 밑줄 없애기 */
+            color: gray;
+        }
+        .login_unit_find .find_pw{
+            text-decoration: none; /* 밑줄 없애기 */
+            color: gray;
+        }
 
-.kakao_login {
-    background-color: yellow; /* 노란색 배경색 설정 */
-    color: black; /* 검은색 텍스트 색상 설정 */
-    border: none; /* 테두리 제거 */
-    border-radius: 5px;
-    width: 20%;
-    height: 40px;
-}
+        .black_btn {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 20%;
+            height: 40px;
+        }
 
-.apple_login {
-    background-color: white; /* 흰색 배경색 설정 */
-    color: black; /* 검은색 텍스트 색상 설정 */
-    border: 1px solid grey; /* 테두리 제거 */
-    border-radius: 5px;
-    width: 20%;
-    height: 40px;
-}
+        .kakao_login {
+            background-color: yellow;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            width: 20%;
+            height: 40px;
+        }
 
-#popup_btn.join_btn {
-    background-color: transparent; /* 배경색 제거 */
-    border: 1px solid blue; /* 파란색 선 추가 */
-    color: blue; /* 텍스트 색상을 파란색으로 설정 */
-    padding: 10px 20px; /* 필요에 따라 패딩을 조절하세요 */
-    text-decoration: none; /* 밑줄 제거 */
-    cursor: pointer; /* 호버 시 커서를 포인터로 변경 */
-}
+        .apple_login {
+            background-color: white;
+            color: black;
+            border: 1px solid grey;
+            border-radius: 5px;
+            width: 20%;
+            height: 40px;
+        }
+
+        #popup_btn.join_btn {
+            background-color: transparent;
+            border: 1px solid blue;
+            border-radius: 5px;
+            color: blue;
+            padding: 10px 20px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #popup_btn.join_btn a {
+            text-decoration: none; /* 밑줄 없애기 */
+            color: blue; /* 링크 색상 설정 (원하는 색상으로 변경 가능) */
+        }
+
+        <!--비회원 조회css 스타일-->
+        /* CSS 파일 내에서 스타일 추가 */
+        .order_input p {
+            margin-bottom: 5px; /* 주문자명과 주문번호 레이블 간격 조절 */
+        }
+
+        .order_input input {
+            margin-bottom: 10px; /* 입력 필드 간격 조절 */
+        }
+
+        .order_input input[type="text"],
+        .order_input input[type="number"] {
+            width: 20%; /* input 너비를 100%로 설정하여 부모 요소에 맞춥니다. */
+            padding: 10px; /* 내부 패딩을 추가해 입력 필드의 내용이 더 잘 보이도록 합니다. */
+            margin-bottom: 10px; /* 입력 필드 간격 조절 */
+            border: 1px solid #ccc; /* 테두리 추가 */
+            border-radius: 5px; /* 둥근 테두리 스타일 적용 */
+            outline: none; /* 포커스 시 브라우저 기본 스타일 제거 */
+        }
+
+        /* 주문 내역 조회하기 버튼 스타일 */
+        #inquiry {
+            background-color: white; /* 배경색 설정 */
+            color: white; /* 글자색 설정 */
+            border: none; /* 테두리 제거 */
+            padding: 10px 20px; /* 패딩 설정 */
+            cursor: pointer; /* 커서 스타일 변경 */
+            border-radius: 5px; /* 둥근 테두리 스타일 적용 */
+        }
     </style>
 </head>
-
-    <div class="login_container">
-        <h2 class="comment">로그인</h2>
-        <hr>
-        <form method="post" action="{% url 'accounts:login' %}">
-            {% csrf_token %}
-        <!--content-->
-        <div class="login_content">
+<body>
+<div class="login_container">
+    <h2 class="comment">로그인</h2>
+    <form method="post" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+        <div class="login_choice">
+            <p class="member" onclick="showLoginContent()">가입 회원</p>&nbsp;&nbsp;&nbsp;&nbsp;
+            <p class="not_member" onclick="showOrderInquiry()">비회원 주문</p>
+        </div>
+        <hr><br>
+        <div class="login_content" id="loginContent">
             <form action="" method="post" novalidate>
                 <div class="login_input">
-                    <input type="text" name="username" title="아이디 입력" placeholder="아이디" value="{{ form.username.value|default_if_none:''}}"   ><br>
+                    <input type="text" name="username" title="아이디 입력" placeholder="아이디" value="{{ form.username.value|default_if_none:'' }}"><br>
                     <input type="password" name="password" title="비밀번호" placeholder="비밀번호" value="{{ form.password.value|default_if_none:'' }}">
-
                     <div class="login_btn">
                         <button class="black_btn"> 로그인</button>
                     </div>
-
-                    </div>
-                    <div class="login_unit_find">
-                        <a href="#" class="find_id">아이디 찾기</a>
-                        <a href="#" class="find_pw">비밀번호 찾기</a>
-                    </div>
-                    <div class="auther_longin">
-                        <button type="button" class="kakao_login">카카오 로그인</button><br>
-                        <button type="button" class="apple_login">애플 로그인</button>
-                    </div>
-                    <div class="join">
-                        <button type="button" id="popup_btn" class="join_btn"><a href="{% url 'accounts:agreement' %}">회원가입</a></button>
-                    </div>
+                </div>
+                <div class="login_unit_find">
+                    <a href="{% url 'accounts:find_id' %}" class="find_id">아이디 찾기</a>
+                    <a href="{% url 'accounts:find_pw' %}" class="find_pw">비밀번호 찾기</a>
+                </div>
+                <div class="auther_longin">
+                    <button type="button" class="kakao_login">카카오 로그인</button><br>
+                    <button type="button" class="apple_login">애플 로그인</button>
+                </div>
+                <div class="join">
+                    <button type="button" id="popup_btn" class="join_btn"><a href="{% url 'accounts:agreement' %}">회원가입</a></button>
                 </div>
             </form>
         </div>
+        <!-- 비회원 주문 조회 -->
+        <div class="Order_inquiry" id="orderInquiry" style="display: none;">
+            <form action="" method="post" novalidate>
+                <div class="order_input">
+                    <p>주문자명</p>
+                    <input type="text" name="ordername" class="surch" title="아이디 입력"><br>
+                    <p>주문번호</p>
+                    <input type="number" name="ordernumber" class="surch" title="주문번호 입력">
+                </div>
 
-
+                <div>
+                    <button type="button" id="inquiry" class="join_btn" value="주문 내역 조회하기">주문 내역 조회하기</button>
+                </div>
+                <div class="join">
+                    <button type="button" id="popup_btn" class="join_btn"><a href="{% url 'accounts:agreement' %}">회원가입</a></button>
+                </div>
+            </form>
         </div>
+    </form>
+</div>
+
+<script>
+    function showLoginContent() {
+        var loginContent = document.getElementById('loginContent');
+        var orderInquiry = document.getElementById('orderInquiry');
+
+        loginContent.style.display = 'block';
+        orderInquiry.style.display = 'none';
+    }
+
+    function showOrderInquiry() {
+        var loginContent = document.getElementById('loginContent');
+        var orderInquiry = document.getElementById('orderInquiry');
+
+        loginContent.style.display = 'none';
+        orderInquiry.style.display = 'block';
+    }
+    var orderNameInput = document.querySelector('input[name="ordername"]');
+    var orderNumberInput = document.querySelector('input[name="ordernumber"]');
+
+    // 주문 내역 조회하기 버튼 엘리먼트 가져오기
+    var inquiryButton = document.getElementById('inquiry');
+
+    // 주문자명 또는 주문번호 입력 시 버튼 활성화 함수
+    function checkInputs() {
+        var orderNameValue = orderNameInput.value.trim();
+        var orderNumberValue = orderNumberInput.value.trim();
+
+        // 주문자명과 주문번호가 모두 값이 있을 때 버튼 활성화
+        if (orderNameValue !== '' && orderNumberValue !== '') {
+            inquiryButton.disabled = false;
+            inquiryButton.style.backgroundColor = 'black';
+        } else {
+            inquiryButton.disabled = true;
+            inquiryButton.style.backgroundColor = 'white';
+        }
+    }
+
+    // 입력 필드 값 변경 이벤트를 감지하여 버튼 활성화 상태 업데이트
+    orderNameInput.addEventListener('input', checkInputs);
+    orderNumberInput.addEventListener('input', checkInputs);
+
+    function showLoginContent() {
+        var loginContent = document.getElementById('loginContent');
+        var orderInquiry = document.getElementById('orderInquiry');
+
+        loginContent.style.display = 'block';
+        orderInquiry.style.display = 'none';
+
+        // 스타일 변경
+        document.querySelector('.member').style.fontWeight = 'bold';
+        document.querySelector('.not_member').style.fontWeight = 'normal';
+        document.querySelector('.member').style.color = 'black';
+        document.querySelector('.not_member').style.color = 'gray';
+    }
+
+    function showOrderInquiry() {
+        var loginContent = document.getElementById('loginContent');
+        var orderInquiry = document.getElementById('orderInquiry');
+
+        loginContent.style.display = 'none';
+        orderInquiry.style.display = 'block';
+
+        // 스타일 변경
+        document.querySelector('.member').style.fontWeight = 'normal';
+        document.querySelector('.not_member').style.fontWeight = 'bold';
+        document.querySelector('.member').style.color = 'gray';
+        document.querySelector('.not_member').style.color = 'black';
+    }
+</script>
+</body>
+</html>
 {% endblock %}
