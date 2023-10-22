@@ -107,8 +107,8 @@ input[type="password"][name="password"]:focus {
 
                     </div>
                     <div class="login_unit_find">
-                        <a href="#" class="find_id">아이디 찾기</a>
-                        <a href="#" class="find_pw">비밀번호 찾기</a>
+                        <a href="{% url 'accounts:find_id' %}" class="find_id">아이디 찾기</a>
+                        <a href="{% url 'accounts:find_pw' %}" class="find_pw">비밀번호 찾기</a>
                     </div>
                     <div class="auther_longin">
                         <button type="button" class="kakao_login">카카오 로그인</button><br>

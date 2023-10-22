@@ -64,8 +64,9 @@
     <div class="col-lg-5">
         <h1 class="font-weight-light">{{ content.name }}</h1>
         <p>
-            {{ content.price | truncatewords:30 }}원
-            {{ content.description | truncatewords:30 }}
+            {{ content.price | truncatewords:30 }}원<br>
+            {{ content.description | truncatewords:30 }}<br>
+            {{ content.stock | truncatewords:30}}개<br>
         </p>
         <a class="btn btn-primary" href="{% url 'detail' content.id %}">상세 상품 정보</a>
     </div>

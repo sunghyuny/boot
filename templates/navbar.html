@@ -32,23 +32,21 @@
                             {% csrf_token %}
                             <input type="text" type="search" name="q">
                             <button type="submit">검색</button>
-                        </li>
                             </form>
+                        </li>
                         {% if user.is_authenticated %}
                          <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">{{ user.username }} (logout)</a></li>
                          {% else %}
                          <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">login</a></li>
                          {% endif %}
-                        {% if user.is_authenticated %}
+                        {% if item_count >= 0 %}
                         <li>
-                            <a href="/cart" class="nav-link">장바구니</a>
+                            <a href="/cart" class="nav-link"><i class="fas fa-shopping-cart">장바구니({{item_count}})</i></a>
                         </li>
                         {% endif %}
-
                     </ul>
                 </div>
             </div>
         </nav>
-
     </body>
 </html>

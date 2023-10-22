@@ -7,6 +7,7 @@ from django.views.generic.edit import FormView
 from django.utils.decorators import *
 
 
+
 # Create your views here.
 def index(request):
     content_list = Product.objects.order_by('registered_date')
