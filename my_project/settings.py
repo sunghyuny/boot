@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-c%kkc00#lars0tx+hp-ahqq_vjnw&$dzztqcr1f^ea5qp=kmwu
 DEBUG = True
 
 ALLOWED_HOSTS = [
+
 ]
 
 
@@ -143,6 +144,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(BASE_DIR)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

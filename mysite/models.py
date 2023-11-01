@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from urllib.parse import urlparse
+from django.core.files import File
+
 # Create your models here.
 class MainContent(models.Model):
     title = models.CharField(max_length= 200)
@@ -26,8 +29,8 @@ class Product(models.Model):
     stock = models.IntegerField(verbose_name="재고")
     registered_date = models.DateTimeField(verbose_name="등록시간", auto_now_add=True)
     imgfile = models.ImageField(upload_to="products/", null=True, blank=True, verbose_name="상품이미지")
-
     name = models.CharField(max_length=32, verbose_name="상품명")
+    category = models.CharField(max_length=32 , verbose_name="카테고리")
 
     def __str__(self):
         return self.name
@@ -36,3 +39,6 @@ class Product(models.Model):
         db_table = "Shoppingmall_Product"
         verbose_name = "상품"
         verbose_name_plural = "상품"
+
+
+

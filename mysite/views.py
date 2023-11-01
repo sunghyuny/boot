@@ -75,6 +75,7 @@ class ProductRegister(FormView):
 
         def form_valid(self, form):
             name = form.cleaned_data['name']
+            category = form.cleaned_data['category']
             price = form.cleaned_data['price']
             stock = form.cleaned_data['stock']
             description = form.cleaned_data['description']
@@ -82,6 +83,7 @@ class ProductRegister(FormView):
 
             product = Product(
                 name=name,
+                category = category,
                 price=price,
                 stock=stock,
                 description=description,

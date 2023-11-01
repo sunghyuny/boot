@@ -2,59 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Title</title>
 </head>
 <body>
-    <section class="login_content">
-        <h1 class="company_name">MUSINSA</h1>
-        <!--membership_join-->
-        <div id="login_container" class="join_membership">
-            <div class="login_input">
-                <label class="login-input_label">
-                    아이디
-                    <span class="login-input_label_essential">필수 입력</span>
-                </label>
-                <div class="Id_input">
-                    <input type="text" id="join_id" placeholder="영문, 숫자 5-11자" class="login-input__input">
-                </div>
-            </div>
+{% extends 'base.html' %}
 
-            <div class="login_input">
-                <label  class="login-input__label">
-                    비밀번호
-                    <span class="login-input__label__essential">필수 입력</span>
-                </label>
-                <div class="pw_input">
-                    <input type="text" id="join_pw1" placeholder="숫자, 영문, 특수문자 조합 최소 8자" class="login-input__input">
-                </div>
-                <div class="pw_input">
-                    <input type="text" id="join_pw2" placeholder="비밀번호 재입력" class="login-input__input">
-                </div>
-            </div>
-
-            <div class="login_input">
-                <label  class="login-input__label">
-                    이메일
-                </label>
-                <div class="Id_input">
-                    <input type="email" id="join_email" placeholder="" class="login-input__input">
-                </div>
-            </div>
-
-            <div class="login_input">
-                <label  class="login-input__label">
-                    친구 초대 추천인 아이디
-                    <span class="login-input__label__essential"></span>
-                </label>
-                <div class="Id_input">
-                    <input type="text" id="join_code" placeholder="" class="login-input__input">
-                </div>
-            </div>
-            <div class="btn">
-                <button type="submit" class="login_btn">가입하기</button>
-            </div>
-        </div>
-    </section>
+{% block content %}
+<h2> Sign up</h2>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Sign up</button>
+</form>
+{% endblock %}
 </body>
 </html>

@@ -7,6 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인페이지</title>
 
+
+<script>
+    function showitemcontent(){
+        var itemcontent = document.getElementById('itemcontent');
+        var brandcontent = document.getElementById('brandcontent');
+
+        itemcontent.style.display = 'block';
+        brandcontent.style.display = 'none';
+
+         // 스타일 변경
+        document.querySelector('.item').style.fontWeight = 'bold';
+        document.querySelector('.brand').style.fontWeight = 'normal';
+        document.querySelector('.item').style.color = 'black';
+        document.querySelector('.brand').style.color = 'gray';
+    }
+    function showbrandcontent(){
+        var itemcontent = document.getElementById('itemcontent');
+        var brandcontent = document.getElementById('brandcontent');
+
+        itemcontent.style.display = 'none';
+        brandcontent.style.display = 'block';
+
+        // 스타일 변경
+        document.querySelector('.item').style.fontWeight = 'normal';
+        document.querySelector('.brand').style.fontWeight = 'bold';
+        document.querySelector('.item').style.color = 'gray';
+        document.querySelector('.brand').style.color = 'black';
+
+
+    }
+    // 입력 필드 값 변경 이벤트를 감지하여 버튼 활성화 상태 업데이트
+    orderNameInput.addEventListener('input', checkInputs);
+    orderNumberInput.addEventListener('input', checkInputs);
+
+
+</script>
     <style>
         /* CSS 스타일링 */
 
@@ -136,406 +172,130 @@
             <br>
             <!-- 품목 카테고리 -->
             <div class="item">
-                <input type="checkbox" id="best-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">인기</label>
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <label class="menu-label" for="menu-toggle">인기</label>
+                <ul class="submenu">
+                    <li><a href="#">의류</a></li>
+                    <li><a href="#">화장품</a></li>
+                    <li><a href="#">가구</a></li>
+                    <li><a href="#">식품</a></li>
+                    <li><a href="#">스포츠</a></li>
+                    <li><a href="#">여행</a></li>
+                    <li><a href="#">온라인 쿠폰</a></li>
+                </ul>
+                <hr>
+
+
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <label for="menu-toggle" class="menu-label">의류</label>
                 <ul class="submenu">
                     <li><a href="#">맨투맨/스웨트셔츠</a></li>
                     <li><a href="#">니트/스웨터</a></li>
-                    <li><a href="#">셔츠/블라우스</a></li>
                     <li><a href="#">트레이닝/조거팬츠</a></li>
                     <li><a href="#">후드 티셔츠</a></li>
-                    <li><a href="#">긴소매 티셔츠</a></li>
-                    <li><a href="#">캡/야구 모자</a></li>
                     <li><a href="#">데님 팬츠</a></li>
                     <li><a href="#">가디건</a></li>
                     <li><a href="#">코튼 팬츠</a></li>
-                    <li><a href="#">나일론/코치 재킷</a></li>
                     <li><a href="#">후드 집업</a></li>
-                    <li><a href="#">백팩</a></li>
-                    <li><a href="#">블루종</a></li>
+
                 </ul><hr>
                 <input type="checkbox" id="top-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">상의</label>
+                <label for="menu-toggle" class="menu-label">화장품</label>
                 <ul class="submenu">
                     <li><a href="#">전체</a></li>
-                    <li><a href="#">니트/스웨터</a></li>
-                    <li><a href="#">후드 티셔츠</a></li>
-                    <li><a href="#">맨투맨/스웨트셔츠</a></li>
-                    <li><a href="#">긴소매 티셔츠</a></li>
-                    <li><a href="#">셔츠/블라우스</a></li>
-                    <li><a href="#">피케/카라 티셔츠</a></li>
-                    <li><a href="#">반소매 티셔츠</a></li>
-                    <li><a href="#">스포츠 상의</a></li>
-                    <li><a href="#">기타 상의</a></li>
+                    <li><a href="#">스킨/로션</a></li>
+                    <li><a href="#">클렌징/필링</a></li>
+                    <li><a href="#">향수</a></li>
+                    <li><a href="#">헤어</a></li>
+
                 </ul><hr>
                 <input type="checkbox" id="outerwear-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">아우터</label>
+                <label for="menu-toggle" class="menu-label">가구</label>
                 <ul class="submenu">
                     <li><a href="#">전체</a></li>
-                    <li><a href="#">후드 집업</a></li>
-                    <li><a href="#">블루종</a></li>
-                    <li><a href="#">레더/라이더스 재킷</a></li>
-                    <li><a href="#">무스탕/퍼</a></li>
-                    <li><a href="#">트러커 재킷</a></li>
-                    <li><a href="#">슈트/블레이저 재킷</a></li>
-                    <li><a href="#">가디건</a></li>
-                    <li><a href="#">아노락 재킷</a></li>
-                    <li><a href="#">플리스/뽀글이</a></li>
-                    <li><a href="#">트레이닝 재킷</a></li>
-                    <li><a href="#">스타디움 재킷</a></li>
-                    <li><a href="#">환절기 코트</a></li>
-                    <li><a href="#">겨울 싱글 코트</a></li>
-                    <li><a href="#">겨울 더블 코트</a></li>
-                    <li><a href="#">겨울 기타 코트</a></li>
-                    <li><a href="#">롱패딩/롱헤비 아우터</a></li>
-                    <li><a href="#">숏패팅/숏헤비 아우터</a></li>
+                    <li><a href="#">쇼파</a></li>
+                    <li><a href="#">수납</a></li>
+                    <li><a href="#">식탁</a></li>
+                    <li><a href="#">침구</a></li>
+                    <li><a href="#">커튼</a></li>
+
                 </ul><hr>
                 <input type="checkbox" id="bottom-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">바지</label>
+                <label for="menu-toggle" class="menu-label">식품</label>
                 <ul class="submenu">
                     <li><a href="#">전체</a></li>
-                    <li><a href="#">데님 팬츠</a></li>
-                    <li><a href="#">코튼 팬츠</a></li>
-                    <li><a href="#">슈트 팬츠/슬랙스</a></li>
-                    <li><a href="#">트레이닝/조거 팬츠</a></li>
-                    <li><a href="#">숏 팬츠</a></li>
-                    <li><a href="#">레깅스</a></li>
-                    <li><a href="#">점프 슈트/오버올</a></li>
-                    <li><a href="#">스포츠 하의</a></li>
-                    <li><a href="#">기타 바지</a></li>
+                    <li><a href="#">쌀/잡곡</a></li>
+                    <li><a href="#">수산물/육류</a></li>
+                    <li><a href="#">과일/채소</a></li>
+                    <li><a href="#">면/가공식품</a></li>
+                    <li><a href="#">유제품</a></li>
+                    <li><a href="#"></a>건강식품</li>
+
                 </ul><hr>
                 <input type="checkbox" id="onepiece-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">원피스</label>
+                <label for="menu-toggle" class="menu-label">스포츠</label>
                 <ul class="submenu">
                     <li><a href="#">전체</a></li>
-                    <li><a href="#">미니 원피스</a></li>
-                    <li><a href="#">미디 원피스</a></li>
-                    <li><a href="#">맥시 원피스</a></li>
+                    <li><a href="#">캠핑</a></li>
+                    <li><a href="#">골프</a></li>
+                    <li><a href="#">자전거</a></li>
+                    <li><a href="#">등산</a></li>
+                    <li><a href="#">스포츠 용품</a></li>
                 </ul><hr>
                 <input type="checkbox" id="skirt-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">스커트</label>
+                <label for="menu-toggle" class="menu-label">여행</label>
                 <ul class="submenu">
                     <li><a href="#">전체</a></li>
-                    <li><a href="#">미니 스커트</a></li>
-                    <li><a href="#">미디 스커트</a></li>
-                    <li><a href="#">롱스커트</a></li>
+                    <li><a href="#">숙박</a></li>
+                    <li><a href="#">티켓</a></li>
+                    <li><a href="#">렌터카</a></li>
+                    <li><a href="#">항공권</a></li>
                 </ul><hr>
                 <input type="checkbox" id="snickers-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">스니커즈</label>
+                <label for="menu-toggle" class="menu-label">온라인 쿠폰</label>
                 <ul class="submenu">
                     <li><a href="#">전체</a></li>
-                    <li><a href="#">캔버스/단화</a></li>
-                    <li><a href="#">패션스니커즈화</a></li>
-                    <li><a href="#">스포츠 스니커즈</a></li>
-                    <li><a href="#">기타 스니커즈</a></li>
-                </ul><hr>
-                <input type="checkbox" id="shoes-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">신발</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">구두</a></li>
-                    <li><a href="#">로퍼</a></li>
-                    <li><a href="#">힐/펌프스</a></li>
-                    <li><a href="#">플랫 슈즈</a></li>
-                    <li><a href="#">블로퍼</a></li>
-                    <li><a href="#">샌들</a></li>
-                    <li><a href="#">슬리퍼</a></li>
-                    <li><a href="#">기타 신발</a></li>
-                    <li><a href="#">모카신/보트 슈즈</a></li>
-                    <li><a href="#">부츠</a></li>
-                    <li><a href="#">신발 용품</a></li>
-                </ul><hr>
-                <input type="checkbox" id="bag-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">가방</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">백팩</a></li>
-                    <li><a href="#">메신저/크로스 백</a></li>
-                    <li><a href="#">숄더백</a></li>
-                    <li><a href="#">토트백</a></li>
-                    <li><a href="#">에코백</a></li>
-                    <li><a href="#">보스턴/드럼/더플백</a></li>
-                    <li><a href="#">웨이스트 백</a></li>
-                    <li><a href="#">파우치 백</a></li>
-                    <li><a href="#">브리프케이스</a></li>
-                    <li><a href="#">캐리어</a></li>
-                    <li><a href="#">가방 소품</a></li>
-                    <li><a href="#">지갑/머니클립</a></li>
-                    <li><a href="#">클러치 백</a></li>
-                </ul><hr>
-                <input type="checkbox" id="womanbag-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">여성 가방</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">크로스백</a></li>
-                    <li><a href="#">토트백</a></li>
-                    <li><a href="#">숄더백</a></li>
-                    <li><a href="#">클러치 백</a></li>
-                    <li><a href="#">파우치 백</a></li>
-                    <li><a href="#">백팩</a></li>
-                    <li><a href="#">웨이스트 백</a></li>
-                    <li><a href="#">지갑/머니클립</a></li>
-                    <li><a href="#">가방 소품</a></li>
-                </ul><hr>
-                <input type="checkbox" id="sportsgoods-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">스포츠 용품</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">상의</a></li>
-                    <li><a href="#">하의</a></li>
-                    <li><a href="#">아우터</a></li>
-                    <li><a href="#">스커트</a></li>
-                    <li><a href="#">원피스</a></li>
-                    <li><a href="#">상하의 세트</a></li>
-                    <li><a href="#">수영복/비치웨어</a></li>
-                    <li><a href="#">스포츠신발</a></li>
-                    <li><a href="#">기구/용품/장비</a></li>
-                    <li><a href="#">스포츠가방</a></li>
-                    <li><a href="#">스포츠잡화</a></li>
-                    <li><a href="#">스포츠모자</a></li>
-                    <li><a href="#">캠핑용품</a></li>
-                    <li><a href="#">낚시용품</a></li>
-                </ul><hr>
-                <input type="checkbox" id="hat-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">모자</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">캡/야구 모자</a></li>
-                    <li><a href="#">헌팅캡/베레모</a></li>
-                    <li><a href="#">페도라</a></li>
-                    <li><a href="#">버킷/사파리햇</a></li>
-                    <li><a href="#">비니</a></li>
-                    <li><a href="#">트루퍼</a></li>
-                    <li><a href="#">기타 모자</a></li>
-                </ul><hr>
-                <input type="checkbox" id="socks-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">양말/레그웨어</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">양말</a></li>
-                    <li><a href="#">스타킹</a></li>
-                </ul><hr>
-                <input type="checkbox" id="inner-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">속옷</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">여성 속옷 상의</a></li>
-                    <li><a href="#">여성 속옷 하의</a></li>
-                    <li><a href="#">여성 속옷 세트</a></li>
-                    <li><a href="#">남성 속옷</a></li>
-                    <li><a href="#">홈웨어</a></li>
-                </ul><hr>
-                <input type="checkbox" id="glasses-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">선글라스/안경테</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">안경</a></li>
-                    <li><a href="#">선글라스</a></li>
-                    <li><a href="#">안경 소품</a></li>
-                </ul><hr>
-                <input type="checkbox" id="accessories-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">액세서리</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">마스크</a></li>
-                    <li><a href="#">키링/키케이스</a></li>
-                    <li><a href="#">벨트</a></li>
-                    <li><a href="#">넥타이</a></li>
-                    <li><a href="#">머플러</a></li>
-                    <li><a href="#">스카프/반다나</a></li>
-                    <li><a href="#">장갑</a></li>
-                    <li><a href="#">기타 액세서리</a></li>
-                </ul><hr>
-                <input type="checkbox" id="watch-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">시계</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">디지털</a></li>
-                    <li><a href="#">쿼츠 아날로그</a></li>
-                    <li><a href="#">오토매틱 아날로그</a></li>
-                    <li><a href="#">시계 용품</a></li>
-                    <li><a href="#">기타 시계</a></li>
-                </ul><hr>
-                <input type="checkbox" id="jewelry-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">주얼리</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">팔찌</a></li>
-                    <li><a href="#">반지</a></li>
-                    <li><a href="#">목걸이/펜던트</a></li>
-                    <li><a href="#">귀걸이</a></li>
-                    <li><a href="#">발찌</a></li>
-                    <li><a href="#">브로치/배지</a></li>
-                    <li><a href="#">헤어 액세서리</a></li>
-                </ul><hr>
-                <input type="checkbox" id="beauty-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">뷰티</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">스킨케어</a></li>
-                    <li><a href="#">클렌징</a></li>
-                    <li><a href="#">베이스 메이크업</a></li>
-                    <li><a href="#">포인트 메이크업</a></li>
-                    <li><a href="#">바디케어</a></li>
-                    <li><a href="#">쉐이빙/제모</a></li>
-                    <li><a href="#">헤어케어</a></li>
-                    <li><a href="#">향수/탈취</a></li>
-                    <li><a href="#">뷰티 디바이스</a></li>
-                    <li><a href="#">다이어트/헬스</a></li>
-                    <li><a href="#">미용 소품</a></li>
-                    <li><a href="#">덴탈케어</a></li>
-                </ul><hr>
-                <input type="checkbox" id="digital-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">디지털/테크</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">음향가전</a></li>
-                    <li><a href="#">휴대폰</a></li>
-                    <li><a href="#">스마트기기</a></li>
-                    <li><a href="#">태블릿</a></li>
-                    <li><a href="#">TV/영상가전</a></li>
-                    <li><a href="#">컴퓨터</a></li>
-                    <li><a href="#">카메라</a></li>
-                    <li><a href="#">생활가전</a></li>
-                    <li><a href="#">주방가전</a></li>
-                    <li><a href="#">계절가전</a></li>
-                    <li><a href="#">차량용 디지털</a></li>
+                    <li><a href="#">상품권</a></li>
                     <li><a href="#">게임</a></li>
-                    <li><a href="#">기타 디지털/테크</a></li>
+                    <li><a href="#">편의점</a></li>
+                    <li><a href="#">외식</a></li>
                 </ul><hr>
-                <input type="checkbox" id="living-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">리빙</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">가구</a></li>
-                    <li><a href="#">조명</a></li>
-                    <li><a href="#">침구</a></li>
-                    <li><a href="#">홈패브릭</a></li>
-                    <li><a href="#">홈인테리어</a></li>
-                    <li><a href="#">주방용품</a></li>
-                    <li><a href="#">생활용품</a></li>
-                    <li><a href="#">욕실용품</a></li>
-                    <li><a href="#">사무용품</a></li>
-                    <li><a href="#">기타 라이프</a></li>
-                </ul><hr>
-                <input type="checkbox" id="culture-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">컬처</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">티켓</a></li>
-                    <li><a href="#">도서/음반</a></li>
-                    <li><a href="#">취미</a></li>
-                    <li><a href="#">아트</a></li>
-                    <li><a href="#">기타 컬처</a></li>
-                </ul><hr>
-                <input type="checkbox" id="pet-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">반려동물</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">반려동물 의류</a></li>
-                    <li><a href="#">반려동물 잡화</a></li>
-                    <li><a href="#">반려동물 용품</a></li>
-                    <li><a href="#">반려동물 푸드</a></li>
-                </ul><hr>
+
             </div>
             <!-- 브랜드 카테고리 -->
             <div class="brand">브랜드
-                <p>브랜드명 입력</p>
+                <input type="text" placeholder="브랜드명 입력">
             </div>
-
         </div>
     </div>
     <!-- //왼쪽 메뉴 영역 -->
 
-    <!-- 오른쪽 메뉴 영역 --><div class="right">
+    <!-- 오른쪽 메뉴 영역 -->
+    <div class="right">
         <!-- 스타일 스냅 -->
-        <h2>스타일</h2>
-        <div class="categorybox">
-            <a href="#">브랜드 스냅</a><br>
-            <a href="#">코디숍</a><br>
-            <a href="#">코디맵</a><br>
-            <a href="#">브랜드 룩북</a><br>
-        </div>
-        <hr>
-        <h2>스페셜</h2>
-        <div class="categorybox">
-            <a href="#">쇼케이스</a><br>
-            <a href="#">단독 상품</a><br>
-        </div>
-        <hr>
-        <h2>쇼핑 이슈</h2>
-        <div class="categorybox">
-
-        </div>
-        <hr>
-        <h2>매거진</h2>
-        <div class="categorybox">
-            <a href="#">스타일</a><br>
-            <a href="#">코디</a><br>
-            <a href="#">아이템</a><br>
-            <a href="#">리포트</a><br>
-            <a href="#">피플</a><br>
-        </div>
-        <hr>
-        <h2>구매 후기</h2>
-        <div class="categorybox">
-
-        </div>
-        <hr>
-        <h2>주요 브랜드</h2>
-        <div class="mainbrand">
-
+        <div class="container px-4 px-lg-5" >
+            <div class="row mx-width: 5rem;">
+            {% for product in products %}
+                <div class="my_bottom_margin col-9 col-sm-12 col-md-4" style="margin-top:30px;">
+                    <div class="card text-center" style="min-width: 3rem;">
+                        <a href="{% url 'detail' product.id %}"><img class="card-img-top my_image" src="{{ product.imgfile.url }}"  alt="{{product.name}}" style="height:18rem;"></a>
+                        <div class="card-body">
+                            <h4>{{product.name}}</h4>
+                            <p>{{product.price}} 원</p>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="row mx-auto">
+                    <p class="text-center my_search_text"> 찾을수없습니다</p>
+                </div>
+            {% endfor %}
+            </div>
         </div>
     </div>
+
     <!-- //오른쪽 메뉴 영역 -->
 
-<script>
-    function showitemcontent(){
-        var itemcontent = document.getElementById('itemcontent');
-        var brandcontent = document.getElementById('brandcontent');
-
-        itemcontent.style.display = 'block';
-        brandcontent.style.display = 'none';
-    }
-    function showbrandcontent(){
-        var itemcontent = document.getElementById('itemcontent');
-        var brandcontent = document.getElementById('brandcontent');
-
-        itemcontent.style.display = 'none';
-        brandcontent.style.display = 'block';
-    }
-    // 입력 필드 값 변경 이벤트를 감지하여 버튼 활성화 상태 업데이트
-    orderNameInput.addEventListener('input', checkInputs);
-    orderNumberInput.addEventListener('input', checkInputs);
-
-    function showitemcontent() {
-        var itemcontent = document.getElementById('itemcontent');
-        var brandcontent = document.getElementById('brandcontent');
-
-        itemcontent.style.display = 'block';
-        brandcontent.style.display = 'none';
-
-        // 스타일 변경
-        document.querySelector('.item').style.fontWeight = 'bold';
-        document.querySelector('.brand').style.fontWeight = 'normal';
-        document.querySelector('.item').style.color = 'black';
-        document.querySelector('.brand').style.color = 'gray';
-    }
-
-    function showbrandcontent() {
-        var itemcontent = document.getElementById('itemcontent');
-        var brandcontent = document.getElementById('brandcontent');
-
-        itemcontent.style.display = 'none';
-        brandcontent.style.display = 'block';
-
-        // 스타일 변경
-        document.querySelector('.item').style.fontWeight = 'normal';
-        document.querySelector('.brand').style.fontWeight = 'bold';
-        document.querySelector('.item').style.color = 'gray';
-        document.querySelector('.brand').style.color = 'black';
-    }
-</script>
 </body>
 
 </html>

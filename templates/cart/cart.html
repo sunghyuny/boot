@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>장바구니</title>
   <style>
     .my_customer_table{
       min-width:400px;
@@ -29,6 +30,7 @@
     .my_custom_button{
       margin-top: 5px;
     }
+
   </style>
 </head>
 </html>
@@ -95,12 +97,12 @@
                   <td>
                     <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i class="fas fa-plus-circle custom_icon">+</i></a>&nbsp;
                     <a href="{% url 'cart:remove_cart' cart_item.product.id %}" class="custom_a"><i class="fas fa-minus-circle custom_icon">-</i></a>&nbsp;
-                    <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_a"><i class="fas fa-trash-alt custom_icon">1</i></a>
+                    <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_a"><i class="fas fa-trash-alt custom_icon">X</i></a>
                   </td>
                 {% else %}
                   <td>
                     &nbsp;<a href="{% url 'cart:remove_cart'  cart_item.product.id %}" class="custom_a"><i class="fas fa-minus-circle custom_icon">-</i></a>&nbsp;
-                    <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_a"><i class="fas fa-trash-alt custom_icon">1</i></a>
+                    <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_a"><i class="fas fa-trash-alt custom_icon">X</i></a>
                   </td>
                   <td></td>
                 {% endif %}

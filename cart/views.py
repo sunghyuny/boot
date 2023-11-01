@@ -61,7 +61,7 @@ def cart_remove(request , product_id):
     else:
         cart_item.delete()
     return redirect('cart:cart_detail')
-
+@login_required
 def full_remove(request, product_id):
     cart=Cart.objects.get(cart_id  = _cart_id(request))
     product = get_object_or_404(Product,id=product_id)

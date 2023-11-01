@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Small Business - Start Bootstrap Template</title>
+        <title>온라인 쇼핑몰 웹 페이지 제작</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -21,6 +21,11 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <form action="{% url 'search_app:searchResult' %}" method="get">
+                            {% csrf_token %}
+                            <input type="text" type="search" name="q">
+                            <button type="submit">검색</button>
+                        </form>
                         <li class="nav-item">
                             <a href="/mysite" class="nav-link">상품</a>
                         </li>
@@ -28,22 +33,17 @@
                             <a href="#" class="nav-link">브랜드</a>
                         </li>
                         <li class="nav-item">
-                        <form action="{% url 'search_app:searchResult' %}" method="get">
-                            {% csrf_token %}
-                            <input type="text" type="search" name="q">
-                            <button type="submit">검색</button>
-                            </form>
+
                         </li>
-                        {% if user.is_authenticated %}
-                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">{{ user.username }} (logout)</a></li>
+                        {% if user.is_authenticated and item_count  >= 0 %}
+                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">{{ user.username }}님 (로그아웃)</a></li>
+                            <li class="nav-item">
+                                <a href="/cart" class="nav-link">장바구니({{item_count}})</a>
+                            </li>
                          {% else %}
-                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">login</a></li>
+                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">로그인</a></li>
+
                          {% endif %}
-                        {% if item_count >= 0 %}
-                        <li>
-                            <a href="/cart" class="nav-link"><i class="fas fa-shopping-cart">장바구니({{item_count}})</i></a>
-                        </li>
-                        {% endif %}
                     </ul>
                 </div>
             </div>
