@@ -8,25 +8,36 @@
         <h1>상품 등록</h1>
     </div>
 </div>
-
 <div class="row mt-5">
     <div class="col-12">
-        <form method="POST" action="." enctype="multipart/form-data"> <!-- enctype 추가 -->
+        <form method="POST" action="." enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
-            <div class="form-group">
-                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {% if field.name == 'description' %}
-                <textarea class="form-control" name="{{ field.name }}" id="{{ field.id_for_label }}"></textarea>
-                {% else %}
-               <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}"
-                    placeholder="{{ field.label }}" name="{{ field.name }}" />
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {% if field.name != 'category' %}
+                        {% if field.name == 'description' %}
+                            <textarea class="form-control" name="{{ field.name }}" id="{{ field.id_for_label }}"></textarea>
+                        {% else %}
+                            <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}"
+                                placeholder="{{ field.label }}" name="{{ field.name }}" />
+                        {% endif %}
+                    {% else %}
+<select class="form-control" name="{{ field.name }}" id="{{ field.id_for_label }}">
+    <option value="">---------</option>
+    {% for category_key, category_value in form.fields.category.choices %}
+        <option value="{{ category_key }}">{{ category_value }}</option>
+    {% endfor %}
+</select>
+
+                    {% endif %}
+                </div>
+                {% if field.errors %}
+                    <span style="color:red">{{ field.errors }}</span>
                 {% endif %}
-            </div>
-            {% if field.errors %}
-            <span style="color:red">{{ field.errors }}</span>
-            {% endif %}
             {% endfor %}
+
+
 
             <!-- 이미지 업로드 필드 추가 -->
             <div class="form-group">

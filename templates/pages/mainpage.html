@@ -56,6 +56,9 @@
             float: left; /* 항목을 왼쪽으로 정렬 */
         }
 
+        a{
+            color:black;
+        }
 
         /* 왼쪽 구역 스타일 */
         .left {
@@ -172,95 +175,22 @@
             <br>
             <!-- 품목 카테고리 -->
             <div class="item">
-                <input type="checkbox" id="menu-toggle" class="menu-toggle">
                 <label class="menu-label" for="menu-toggle">인기</label>
-                <ul class="submenu">
-                    <li><a href="#">의류</a></li>
-                    <li><a href="#">화장품</a></li>
-                    <li><a href="#">가구</a></li>
-                    <li><a href="#">식품</a></li>
-                    <li><a href="#">스포츠</a></li>
-                    <li><a href="#">여행</a></li>
-                    <li><a href="#">온라인 쿠폰</a></li>
-                </ul>
                 <hr>
-
-
-                <input type="checkbox" id="menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">의류</label>
-                <ul class="submenu">
-                    <li><a href="#">맨투맨/스웨트셔츠</a></li>
-                    <li><a href="#">니트/스웨터</a></li>
-                    <li><a href="#">트레이닝/조거팬츠</a></li>
-                    <li><a href="#">후드 티셔츠</a></li>
-                    <li><a href="#">데님 팬츠</a></li>
-                    <li><a href="#">가디건</a></li>
-                    <li><a href="#">코튼 팬츠</a></li>
-                    <li><a href="#">후드 집업</a></li>
-
-                </ul><hr>
-                <input type="checkbox" id="top-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">화장품</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">스킨/로션</a></li>
-                    <li><a href="#">클렌징/필링</a></li>
-                    <li><a href="#">향수</a></li>
-                    <li><a href="#">헤어</a></li>
-
-                </ul><hr>
-                <input type="checkbox" id="outerwear-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">가구</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">쇼파</a></li>
-                    <li><a href="#">수납</a></li>
-                    <li><a href="#">식탁</a></li>
-                    <li><a href="#">침구</a></li>
-                    <li><a href="#">커튼</a></li>
-
-                </ul><hr>
-                <input type="checkbox" id="bottom-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">식품</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">쌀/잡곡</a></li>
-                    <li><a href="#">수산물/육류</a></li>
-                    <li><a href="#">과일/채소</a></li>
-                    <li><a href="#">면/가공식품</a></li>
-                    <li><a href="#">유제품</a></li>
-                    <li><a href="#"></a>건강식품</li>
-
-                </ul><hr>
-                <input type="checkbox" id="onepiece-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">스포츠</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">캠핑</a></li>
-                    <li><a href="#">골프</a></li>
-                    <li><a href="#">자전거</a></li>
-                    <li><a href="#">등산</a></li>
-                    <li><a href="#">스포츠 용품</a></li>
-                </ul><hr>
-                <input type="checkbox" id="skirt-menu-toggle" class="menu-toggle">
-                <label for="menu-toggle" class="menu-label">여행</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">숙박</a></li>
-                    <li><a href="#">티켓</a></li>
-                    <li><a href="#">렌터카</a></li>
-                    <li><a href="#">항공권</a></li>
-                </ul><hr>
-                <input type="checkbox" id="snickers-menu-toggle" class="menu-toggle">
+                <label for="menu-toggle" class="menu-label"><a href="/mysite/category/1">의류</a></label>
+                <hr>          
+                <label for="menu-toggle" class="menu-label"><a href="/mysite/category/7">화장품</a></label>
+                <hr>
+                <label for="menu-toggle" class="menu-label"><a href="/mysite/category/8">가구</a></label>
+                <hr>
+                <label for="menu-toggle" class="menu-label"><a href="/mysite/category/9">식품</a></label>
+                <hr>
+                <label for="menu-toggle" class="menu-label"><a href="">스포츠</a></label>
+                <hr>
+                <label for="menu-toggle" class="menu-label"><a href="/mysite/category/6">여행</a></label>
+                <hr>
                 <label for="menu-toggle" class="menu-label">온라인 쿠폰</label>
-                <ul class="submenu">
-                    <li><a href="#">전체</a></li>
-                    <li><a href="#">상품권</a></li>
-                    <li><a href="#">게임</a></li>
-                    <li><a href="#">편의점</a></li>
-                    <li><a href="#">외식</a></li>
-                </ul><hr>
-
+                <hr>
             </div>
             <!-- 브랜드 카테고리 -->
             <div class="brand">브랜드
@@ -282,6 +212,7 @@
                         <div class="card-body">
                             <h4>{{product.name}}</h4>
                             <p>{{product.price}} 원</p>
+                           
                         </div>
                     </div>
                 </div>

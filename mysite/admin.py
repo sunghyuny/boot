@@ -16,6 +16,7 @@ admin.site.register(MainContent,MainContentAdmin)
 admin.site.register(Comment, CommentAdmin)
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price',)
+    list_display = ('name', 'price', 'category')
 
 admin.site.register(Product, ProductAdmin)
+

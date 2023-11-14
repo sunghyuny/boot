@@ -24,11 +24,13 @@ from . import views
 
 urlpatterns = [
     path('',views.index),
+    path('product/', views.ProductRegister.as_view(), name='product_create'),
     path('<int:content_id>/', views.detail, name='detail'),
     path('comment/create/<int:content_id>/', views.comment_create, name='comment_create'),
     path('comment/update/<int:comment_id>/', views.comment_update, name='comment_update'),
     path('comment/delete/<int:comment_id>/', views.comment_delete, name='comment_delete'),
-    path('product/', views.ProductRegister.as_view(), name='product_create'),
+    path('category/', views.CategoryView.as_view(), name='category_list'),
+    path('category/<int:category_id>/', views.category_detail, name='category_detail'),
     
 ]
 
