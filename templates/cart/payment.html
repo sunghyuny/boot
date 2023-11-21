@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* 중앙 정렬을 위한 스타일 */
+        .middle {
+            margin-top: 20px;
+        }
+
+        /* 주문/결제 타이틀 스타일 */
+        .ordtitle {
+            margin-bottom: 20px;
+        }
+
+        .title {
+            color: #333; /* 타이틀 텍스트 색상 */
+        }
+
+        /* 고객 정보 테이블 스타일 */
+        .customer_table {
+            width: 100%;
+
+        }
+
+        .customer_table td {
+            padding: 10px;
+        }
+
+        /* 전화번호 설명 텍스트 스타일 */
+        .customer-phone__tel-desc {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* 구매자 정보 테이블 스타일 */
+        .customer_table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .customer_table td,
+        .customer_table th {
+            border: 1px solid #ddd; /* 각 셀에 선을 추가합니다. */
+            padding: 10px;
+        }
+
+        /* 받는 사람 정보 헤더 스타일 */
+        .delivery-address__caption-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* 추가: 넘치면 다음 줄로 이동 */
+        }
+
+        /* 이름 테이블 스타일 */
+        .delivery-address__th.name,
+        .delivery-phone_number.name {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        /* 연락처 테이블 스타일 */
+        .delivery-address__th.phone_number,
+        .delivery-phone_number.phone_number {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        /* 수신인 정보 테이블 스타일 */
+        .delivery-address_table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .delivery-address_table td,
+        .delivery-address_table th {
+            border: 1px solid #ddd; /* 각 셀에 선을 추가합니다. */
+            padding: 10px;
+        }
+        /* 받는 사람 정보 테이블 스타일 추가 */
+        .delivery-address_table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px; /* 이 부분은 여러 테이블이 겹쳐 있는 경우에 여백을 주기 위해 추가된 것입니다. 필요에 따라 조절하세요. */
+        }
+
+        .delivery-address_table td,
+        .delivery-address_table th {
+            border: 1px solid #ddd; /* 각 셀에 선을 추가합니다. */
+            padding: 10px;
+            text-align: left; /* 텍스트를 왼쪽 정렬로 설정 */
+        }
+
+        .delivery_address__td {
+            font-style: italic; /* 주소 셀에 이탤릭 텍스트 스타일 적용 */
+            padding: 10px;
+        }
+
+        .delivery-address__name {
+            color: #0066cc; /* 이름 텍스트에 파란색 색상 적용 */
+        }
+
+        /* 배송 연락처 스타일 */
+        .delivery_phone_number,
+        .deliveryphone_number {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        /* 배송 건수 스타일 */
+        .delivery_count {
+            margin-top: 20px;
+        }
+
+        .count_title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* 배송 날짜, 아이템 리스트 스타일 */
+        .groupbox {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .datebox {
+            flex: 1;
+        }
+
+        .item-list {
+            flex: 9;
+        }
+
+        .item {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+
+        .pay_order-wrap .cash-input {
+            display: none; /* 초기에는 입력란을 숨김 */
+        }
+        /* 결제 정보 테이블 스타일 */
+        .pay_table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .pay_table td,
+        .pay_table th {
+            border: 1px solid #ddd; /* 각 셀에 테두리 추가 */
+            padding: 20px;
+        }
+
+        /* 결제 방식 리스트 요소 */
+        ul, li {
+            list-style: none;
+        }
+
+        .address-error_message {
+            color: white;
+            font-size: 10px;
+        }
+
+        /* 리스트 요소를 가로로 배치 */
+        ul.list,
+        li.list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px; /* Pay_table 아래에 여백을 주기 위한 스타일 */
+        }
+
+        ul.list li,
+        li.list li {
+            display: inline-block; /* 또는 display: inline; */
+            margin-right: 10px; /* 각 항목 사이의 간격을 조절할 수 있습니다. */
+        }
+        .paybtn {
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px; /* 원하는 여백 추가 */
+        }
+
+    </style>
+</head>
+<body>
+<div id="body">
+    <div class="middle">
+        <div class="ordtitle">
+            <h3 class="title">주문/결제</h3>
+        </div>
+        <hr>
+        <!--주문자 정보-->
+        <div class="customer">
+            <div class="customer_root">
+                <h4 class="customer_4">구매자 정보</h4>
+                <table class="customer_table">
+                    <tbody>
+                        <tr>
+                            <td class="col_1">이름</td>
+                            <td class="col_2"><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td class="col_1">이메일</td>
+                            <td class="col2"><input type="email" name="email" id="email"></td>
+                        </tr>
+                        <tr>
+                            <td class="col_1">전화번호</td>
+                            <td class="col_2">
+                                <div data-component="customer_phone">
+                                    <div class="customer-phone__root">
+                                        <div class="customer-phone-form-tel">
+                                            <form data-customer-phone-form-tel>
+                                                <div>
+                                                    <input type="tel" class="customer_phone-input-tel" data-customer_phone-input-tel value="">
+                                                    <button type="submit" data-customer-phone-submit-tel>수정</button>
+                                                    <span class="customer-phone__tel-desc">쿠폰/티켓정보는 구매한 분의 번호로 전송됩니다.</span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div data-component="customer-phone-noties">
+                                            <p class="customer-phone__noti ">* 인증 번호를 못 받았다면, 번호 차단 및 스팸 설정을 확인해 주세요.</p>
+                                        </div>
+                                        <div data-component="customer-phone-form-auth"></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--배달 정보-->
+        <div data-component="deliveryAddress">
+            <h4 class="delivery-address__caption-header">받는 사람 정보
+            </h4>
+
+            <table class="delivery-address_table">
+                <tbody>
+                <tr>
+                    <th class="delivery-address__th">이름</th>
+                    <td class="delivery-address__td">
+                        <span class="delivery-address__name">부천대학교</span>
+                        <span class="delivery-address__type-label">기본 배송정보</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="delivery_address__th">배송주소</th>
+                    <td class="delivery_address__td">
+                        경기도 부천시 신흥로56번길 25 (심곡동 424)
+                    </td>
+                </tr>
+                <tr>
+                    <th class="delivery-address__th">연락처</th>
+                    <td class="delivery-address__td" id="phoneNumber">032-610-0114</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--배송 건수-->
+        <div class="delivery_count">
+            <div class="count_title">배송 될 물건</div>
+            <div class="groupbox">
+                <div class="datebox">
+                    <strong data-bundle-info__cdm-pdd>11월 17일</strong>
+                    <span class="deliverydate">도착보장</span>
+                </div>
+                <div class="item-list">
+                    <div class="itembox">
+
+                        <div class="item">
+                            <p></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--결제 정보-->
+        <div class="pay-price-section">
+            <h2 class="checkout">결제정보</h2><hr>
+            <table class="pay_table">
+                <tbody>
+                    <tr class="payOrder-wrap">
+                        <th class="wrap-title">
+                            총 상품가격
+                        </th>
+                        <td>
+                            <div class="payOrder">
+                                <strong class="price">
+                                    <span id="totalPrice" class="total_price">
+                                        {{ total }}원
+                                    </span>
+                                </strong>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="cash">보유 캐시</th>
+                        <td>
+                            <div>
+                                <strong class="discount">
+                                    <span class="discountPrice">0</span>
+                                    <span>원</span>
+                                </strong>
+                                <span class="message">
+                                    <span class="usable">
+                                        보유:
+                                        <strong class="value" data-price="100000">100000</strong>
+                                        <span class="unit">원</span>
+                                    </span>
+                                </span>
+                                <button class="insert_cash_toggle">보유 캐시 입력</button>
+                                <input type="text" class="cash-input" placeholder="사용할 포인트 입력">
+                                <button class="usecash">사용</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="wrap_title">총 결제금액</th>
+                        <td>
+                            <div class="payprice">
+                                <strong class="Price">
+                                    <span id="totalPayPrice">120,000</span>
+                                    <span class="unit">원</span>
+                                </strong>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="paySel" class="payType">
+                        <th class="wrap_title">결제방법</th>
+                        <td>
+                            <div class="tpyebox">
+                                <div class="type_list_wrapper">
+                                    <ul class="list">
+                                        <li id="rocketPayBox" class="type-selector-li selected-pay-type">
+                                            <input class="type-selector-radio" type="radio" name="paytype" id="payType8" value="ROCKET_BANK">
+                                            <label class="type-selector-label type-selector-label--bank">
+                                                <span class="type-selector-label__text">계좌이체</span>
+                                            </label>
+                                        </li>
+
+                                        <li id="rocketPayCardBox" class="type-selector-li">
+                                            <input class="type-selector-radio" type="radio" name="paytype" id="payType10" value="ROCKET_CARD">
+                                            <label class="type-selector-label type-selector-label--card">
+                                                <span class="type-selector-label__text">신용/체크카드</span>
+                                            </label>
+                                        </li>
+
+                                        <li id="cardPayBox" class="type-selector-li">
+                                            <input class="type-selector-radio" type="radio" name="paytype" id="payType1" value="CARD">
+                                            <label class="type-selector-label">
+                                                <span class="type-selector-label__text">법인카드</span>
+                                            </label>
+                                        </li>
+
+                                        <li id="phonePayBox" class="type-selector-li">
+                                            <input class="type-selector-radio" type="radio" name="paytype" id="payType6" value="PHONE">
+                                            <label class="type-selector-label">
+                                                <span class="type-selector-label__text">휴대폰</span>
+                                            </label>
+                                        </li>
+
+                                        <li id="virtualAccountPayBox" class="type-selector-li">
+                                            <input class="type-selector-radio" type="radio" name="paytype" id="payType7" value="VIRTUALACCOUNT">
+                                            <label class="type-selector-label">
+                                                <span class="type-selector-label__text">무통장입금(가상계좌)</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="paybtn" type="button">결제하기</button>
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+   $(document).ready(function () {
+    // 초기에 기존 번호를 저장할 변수 설정
+    var previousPhoneNumber = '';
+
+    // 보유 캐시 입력 버튼 클릭 시 이벤트
+    $('.insert_cash_toggle').on('click', function () {
+        // 텍스트 박스 토글
+        $('.cash-input').toggle();
+    });
+
+    // 배송 주소가 비어 있는지 확인하고 에러 메시지의 색상 스타일을 적용 또는 제거
+    var deliveryAddress = $('.delivery_address_td');
+    var addressErrorMessage = $('.address_error_message');
+
+    if (deliveryAddress.text().trim() === '') {
+        // 배송 주소가 비어 있으면 에러 메시지에 빨간색 색상 스타일 적용
+        addressErrorMessage.find('.address-error_message').css('color', 'red');
+    }
+
+    // 수정된 전화번호를 저장할 변수
+    var modifiedPhoneNumber = '';
+
+    $('[data-customer-phone-submit-tel]').on('click', function (e) {
+        e.preventDefault();
+
+        // 전화번호 입력란 선택
+        var phoneNumberInput = $('.customer_phone-input-tel');
+
+        // 입력된 전화번호
+        var enteredPhoneNumber = phoneNumberInput.val();
+
+        // 입력된 전화번호가 비어 있거나 기존 번호와 같은 경우 빨간색 테두리 적용
+        if (!enteredPhoneNumber || enteredPhoneNumber === previousPhoneNumber) {
+            phoneNumberInput.addClass('error-border');
+        } else {
+            // 유효성 검사 통과 시 에러 스타일 제거
+            phoneNumberInput.removeClass('error-border');
+
+            // 여기에 전화번호 수정 및 저장 코드를 추가할 수 있습니다.
+
+            // 수정된 번호를 현재 입력된 번호로 업데이트
+            modifiedPhoneNumber = enteredPhoneNumber;
+        }
+    });
+
+    // 보유 포인트 사용 버튼 클릭 시 이벤트
+    $('.usecash').on('click', function () {
+        // 입력된 캐시 값
+        var enteredCash = parseInt($('.cash-input').val(), 10) || 0;
+
+        // 현재 보유 캐시
+        var currentCash = parseInt($('.value').data('price'), 10);
+
+        // 유효성 검사: 입력된 캐시가 현재 보유 캐시보다 크면 에러 스타일 적용
+        if (enteredCash > currentCash) {
+            $('.cash-input').addClass('error-border');
+            return; // 입력값이 유효하지 않으면 함수 종료
+        }
+
+        // 에러 스타일 제거
+        $('.cash-input').removeClass('error-border');
+
+        // 캐시 차감 및 업데이트
+        var updatedCash = currentCash - enteredCash;
+
+        // 할인된 상품가격 업데이트
+        var discountPrice = parseInt($('.discountPrice').text().replace(/,/g, ''), 10);
+        var newDiscountPrice = enteredCash;
+        $('.discountPrice').text(formatPrice(newDiscountPrice));
+
+        // 보유 캐시 업데이트
+        $('.value').text(updatedCash);
+
+        // 입력값 초기화
+        $('.cash-input').val('');
+    });
+
+    // 함수: 가격 포맷팅
+    function formatPrice(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+});
+
+
+</script>
+</body>
+</html>
+{% endblock %}
